@@ -4,8 +4,8 @@
 const nombre = prompt ("Ingresa tu Nombre");
 const apellido = prompt ("Ingresa tu Apellido");
 
-const iniNombre = nombre.charAt (0);
-const iniApe = apellido.charAt (0);
+const iniNombre = nombre.charAt (0).toUpperCase();
+const iniApe = apellido.charAt (0).toUpperCase();
 
 //Crear una etiqueta h2 con JS y la guardo en una constante llamada...Bienvenida
 const bienvenida = document.createElement("h2")
@@ -21,17 +21,29 @@ saludo.appendChild(bienvenida)
 let listaP = [];
 //Crear una funcion (Se puede reutilizar)
 function guardar (){
+
+    //-----2
+    document.querySelector("#aviso").innerHTML=""
+    //-----2
+
     const code = document.querySelector("#codigo").value;
     const pdt = document.querySelector("#producto").value;
-    const price = document.querySelector("#precio").value;
-    /*console.log(code)
-    console.log(pdt)
-    console.log(price)*/
-    const producto = {
+    const price = parseInt (document.querySelector("#precio").value); //....3
+    
+    
+        const producto = {
         codigo:code,
         producto:pdt,
         precio:price,
+        iva:price*0.19,
+        total:price+(price*0.19),
     }
+
+    //parseInt (texto a convertir en numero)
+
+
+
+
     listaP = [ ... listaP,producto]
     console.table(listaP)
 
@@ -40,12 +52,21 @@ function guardar (){
     const aviso = document.querySelector("#aviso");
     aviso.appendChild(productoAviso)
 }
+// .......1
+//Borrado de Formulario
+document.querySelector("#codigo").value="" ;
+document.querySelector("#producto").value="" ;
+document.querySelector("precio").value="" ;
+
+//.......1
+
 
 //Falta:
 //1. Borrar el formulario cada que le damos guardar
 //2. Que cada que ingresemos un producto, solo nos muestre... "Acbas de ingresar el producto" solo el ultimo
 //3. Covertir los valores en precio en numeros para hacer calculo
 //4. Con esos valores en numeros vamos a calcular el iva y guardarlo tambien en el objeto
+//6. Asegurarse que las iniciales queden en mayuscula
 //5. Incluir mas Css esto esta HORRIBLE!!
 
 
